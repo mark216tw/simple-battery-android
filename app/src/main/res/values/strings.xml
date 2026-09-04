@@ -4,4 +4,5 @@
     <string name="widget_description">在桌面顯示目前電池電量</string>
     <string name="temperature_widget_description">在桌面顯示目前電池溫度</string>
     <string name="bluetooth_widget_description">顯示相容藍牙裝置的電池電量</string>
+    <string name="shortcut_battery">電池</string>
 </resources>

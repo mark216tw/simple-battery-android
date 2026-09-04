@@ -61,11 +61,15 @@
 - 透明背景下，數字及閃電使用主題色與黑白對比描邊。
 - 主題色背景下，數字及閃電自動選擇黑色或白色高對比色。
 - 新增小工具時開啟設定頁。
-- 點擊既有小工具可再次進入該實例的設定頁。
+- 長按既有小工具後，可透過支援的 Launcher 原生編輯入口再次進入該實例的設定頁。
 - 完成設定後回到桌面；「返回」按鈕開啟 APP 主畫面。
 - 小工具設定使用獨立 task，避免之後點擊 APP 圖示進入設定頁。
 - 設定頁採較緊湊排版，並提供即時預覽。
 - 設定預覽與實際小工具共用相同繪圖邏輯。
+- 點擊手機電量或溫度小工具會直接開啟 Android 電池設定，不經 APP 主畫面。
+- 點擊藍牙電量小工具會直接開啟 Android 藍牙設定，不經 APP 主畫面。
+- 支援的 Launcher 長按小工具後會提供原生編輯圖示，進入樣式設定。
+- APP 圖示提供「電池」快捷選單，可直接開啟 Android 電池設定。
 
 ## 小工具更新策略
 
@@ -154,6 +158,8 @@ widget_<id>_show_device_name
 
 - `app/src/main/java/com/simplebattery/app/MainActivity.kt`
   - APP 主畫面、即時電池狀態及 APP 設定頁。
+- `app/src/main/java/com/simplebattery/app/SystemSettingsIntents.kt`
+  - 解析並直接啟動 Android 電池或藍牙系統設定元件。
 - `app/src/main/java/com/simplebattery/app/data/BatteryInfo.kt`
   - 電池廣播資料解析及百分比換算。
 - `app/src/main/java/com/simplebattery/app/data/AppSettingsRepository.kt`
@@ -172,6 +178,8 @@ widget_<id>_show_device_name
   - 每個小工具實例的設定儲存。
 - `app/src/main/java/com/simplebattery/app/widget/WidgetUpdateWorker.kt`
   - 15 分鐘定期更新工作。
+- `app/src/main/java/com/simplebattery/app/widget/PackageUpdateReceiver.kt`
+  - APP 更新後重新整理既有小工具的點擊行為與畫面。
 - `app/src/main/java/com/simplebattery/app/widget/TemperatureWidgetProvider.kt`
   - 電池溫度小工具生命週期與更新。
 - `app/src/main/java/com/simplebattery/app/widget/BluetoothBatteryWidgetProvider.kt`
@@ -188,6 +196,7 @@ widget_<id>_show_device_name
 - `./gradlew testDebugUnitTest`：通過。
 - `./gradlew lintDebug`：通過。
 - `./gradlew assembleDebug`：通過。
+- `./gradlew assemblePrerelease`：通過，包含 R8 與資源壓縮。
 - 電量比例換算包含 3 項單元測試。
 
 Debug APK：
@@ -212,5 +221,5 @@ app/build/outputs/apk/debug/app-debug.apk
 
 - `prerelease` Build Type 使用 Debug 金鑰簽署。
 - `prerelease` 啟用 R8 程式碼壓縮及資源壓縮。
-- 版本名稱為 `1.0.0-prerelease.1`，僅供測試。
+- 版本名稱為 `1.0.0-prerelease.2`，僅供測試。
 - 公開專案文件包含 README、使用指南、建置文件、隱私說明、安全性政策、版本紀錄及 MIT License。

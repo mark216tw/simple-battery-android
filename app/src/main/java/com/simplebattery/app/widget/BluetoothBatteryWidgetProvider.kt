@@ -6,10 +6,10 @@ import android.appwidget.AppWidgetProvider
 import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.widget.RemoteViews
 import com.simplebattery.app.R
+import com.simplebattery.app.SystemSettingsIntents
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -99,15 +99,13 @@ class BluetoothBatteryWidgetProvider : AppWidgetProvider() {
                 },
             )
             val bitmap = WidgetRenderer.render(context, manager, appWidgetId, content, settings)
-            val configIntent = Intent(context, WidgetConfigActivity::class.java).apply {
-                putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId)
-                data = Uri.parse("simplebattery://bluetooth/$appWidgetId")
-                flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP
-            }
             val pendingIntent = PendingIntent.getActivity(
                 context,
                 appWidgetId + 200_000,
-                configIntent,
+                SystemSettingsIntents.createIntent(
+                    context,
+                    SystemSettingsIntents.DESTINATION_BLUETOOTH,
+                ),
                 PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE,
             )
             manager.updateAppWidget(

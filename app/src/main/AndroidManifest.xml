@@ -91,6 +91,14 @@
                 <action android:name="android.bluetooth.device.action.BATTERY_LEVEL_CHANGED" />
             </intent-filter>
         </receiver>
+
+        <receiver
+            android:name=".widget.PackageUpdateReceiver"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>

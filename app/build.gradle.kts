@@ -12,7 +12,7 @@ android {
         applicationId = "com.simplebattery.app"
         minSdk = 26
         targetSdk = 35
-        versionCode = 1
+        versionCode = 2
         versionName = "1.0.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
@@ -26,7 +26,7 @@ android {
             isMinifyEnabled = true
             isShrinkResources = true
             applicationIdSuffix = ".prerelease"
-            versionNameSuffix = "-prerelease.1"
+            versionNameSuffix = "-prerelease.2"
             signingConfig = signingConfigs.getByName("debug")
             matchingFallbacks += listOf("release")
             proguardFiles(

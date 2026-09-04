@@ -6,10 +6,10 @@ import android.appwidget.AppWidgetProvider
 import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.widget.RemoteViews
 import com.simplebattery.app.R
+import com.simplebattery.app.SystemSettingsIntents
 import com.simplebattery.app.data.BatteryInfo
 import java.util.Locale
 
@@ -63,15 +63,13 @@ class TemperatureWidgetProvider : AppWidgetProvider() {
                 warning = temperature != null && temperature >= 40f,
             )
             val bitmap = WidgetRenderer.render(context, manager, appWidgetId, content, settings)
-            val configIntent = Intent(context, WidgetConfigActivity::class.java).apply {
-                putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId)
-                data = Uri.parse("simplebattery://temperature/$appWidgetId")
-                flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP
-            }
             val pendingIntent = PendingIntent.getActivity(
                 context,
                 appWidgetId + 100_000,
-                configIntent,
+                SystemSettingsIntents.createIntent(
+                    context,
+                    SystemSettingsIntents.DESTINATION_BATTERY,
+                ),
                 PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE,
             )
             manager.updateAppWidget(

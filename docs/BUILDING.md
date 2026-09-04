@@ -53,7 +53,7 @@ macOS 或 Linux：
 
 `prerelease` Build Type 具有以下特性：
 
-- 版本名稱：`1.0.0-prerelease.1`。
+- 版本名稱：`1.0.0-prerelease.2`。
 - Application ID：`com.simplebattery.app.prerelease`。
 - 使用本機自動產生的 Android Debug keystore 簽署。
 - `debuggable=false`，確保 R8 完整執行最佳化與混淆。
