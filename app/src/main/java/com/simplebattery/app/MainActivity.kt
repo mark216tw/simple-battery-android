@@ -453,7 +453,7 @@ private fun SettingsScreen(
             ) {
                 Box(
                     Modifier
-                        .size(30.dp)
+                        .size(26.dp)
                         .background(Color.hsv(customHue, 0.82f, 0.92f), CircleShape),
                 )
                 HueSlider(
@@ -578,7 +578,7 @@ private fun ThemeColorChoice(
         ) {
             Box(
                 Modifier
-                    .size(24.dp)
+                    .size(26.dp)
                     .background(Color(option.argb), CircleShape),
             )
             Text(
